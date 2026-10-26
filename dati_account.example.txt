@@ -1,0 +1,6 @@
+# Formato: USERNAME-PASSWORD-NOME-COGNOME-DD/MM/AAAA-M|F-COMUNE
+# Usa "R" al posto del comune per sceglierne uno casuale da com_prov.json.
+#
+# Esempi:
+# mariorossi92-Password123!-Mario-Rossi-12/03/1992-M-R
+# luigibianchi88-MiaPass456-Luigi-Bianchi-01/01/1988-M-Milano (MI)
