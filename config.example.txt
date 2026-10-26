@@ -1,0 +1,25 @@
+# ============================================================
+# CONFIGURAZIONE — copia questo file in "config.txt"
+# ============================================================
+ONLINESIM_API_KEY = "INCOLLA_QUI_LA_TUA_CHIAVE_API"
+ONLINESIM_SERVICE = "libero"
+ONLINESIM_COUNTRY_IT = "39"
+ONLINESIM_BASE_URL = "https://onlinesim.io/api"
+
+PROVIDER = "libero"          # "libero" oppure "virgilio"
+SMS_TIMEOUT = 60
+MAX_ATTEMPTS = 3
+PAUSA_TRA_ACCOUNT = 30
+
+HEADLESS = false
+HUMANIZE = true
+HUMAN_PRESET = "careful"
+ALLOW_3P_COOKIES = true
+TRANSPARENT_PROXY = false
+
+Salvare cookie di accesso = Si
+Cartella cookie = cookies
+
+Uso_proxy = No
+WEBSHARE_API_URL = ""
+WEBSHARE_CACHE_TIME = 3600
