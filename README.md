@@ -24,7 +24,7 @@ Da <https://www.python.org/downloads/> — spunta **"Add Python to PATH"**.
 
 ### 2. Scarica il progetto
 ```bash
-git clone https://github.com/TUO-UTENTE/Libero---Virgilio-Automazione-Email.git
+git clone https://github.com/palianitsia/Libero---Virgilio-Automazione-Email.git
 cd Libero---Virgilio-Automazione-Email
 
 
