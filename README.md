@@ -110,11 +110,11 @@ Sessioni multiple. Chiave da <https://cloakbrowser.dev>.
 | File | Descrizione |
 |------|-------------|
 | `Libero-Virglio Creazione Automatizzata v1.0.py` | Script principale |
-| `config.txt` | Configurazione (NON pubblicare) |
-| `dati_account.txt` | Account da creare (NON pubblicare) |
-| `account_creati.txt` | Account creati con successo |
+| `config.txt` | Configurazione (viene creato al primo avvio) |
+| `dati_account.txt` | Account da creare (viene creato al primo avvio) |
+| `account_creati.txt` | Account creati con successo (viene creato al primo avvio) |
 | `com_prov.json` | Lista comuni/province per `R` |
-| `cookies/` | Cookie di sessione salvati |
+| `cookies/` | Cookie di sessione salvati (viene creato al primo avvio) |
 
 ---
 
@@ -125,12 +125,6 @@ Lo script è MIT e gratuito. OnlineSim e Webshare sono a pagamento. CloakBrowser
 
 **Q: Ho il CAPTCHA.**
 Lo script non risolve reCAPTCHA: devi risolverlo tu manualmente nella finestra del browser.
-
-**Q: È legale?**
-Dipende dall'uso. Leggi `DISCLAIMER.md`. La creazione massiva di account quasi sempre viola i ToS di Libero/Virgilio.
-
-**Q: Ho committato la API key per errore.**
-Ruotala subito su onlinesim.io e rimuovila dalla cronologia con `git filter-repo` o BFG Repo-Cleaner.
 
 ---
 
