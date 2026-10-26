@@ -24,7 +24,3 @@ Il software è fornito "COSÌ COM'È", senza garanzie di alcun tipo. Gli autori 
 ## CloakBrowser
 
 Questo progetto **non ridistribuisce** il binario CloakBrowser. L'utente lo scarica direttamente dai canali ufficiali CloakHQ al primo avvio.
-
-## Segnalazioni
-
-Se ritieni che questo progetto violi un ToS o una legge, apri una issue: valuteremo la rimozione.
