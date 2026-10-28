@@ -1,5 +1,8 @@
 # Usa questo script per login istantaneo con cookie gia esistenti, salvati dopo registrazioni ad es per confermare tuo acc bidone e ricevere codice di conferma
 
+# Per un funzionamento corretto installa se non hai gia fatto le librerie con prossimo commando da terminale || pip install playwright || di seguito || playwright install chromium oppure playwright install ||
+
+
 import asyncio
 import json
 import os
