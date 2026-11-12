@@ -46,7 +46,7 @@
 
 <p><b>Nota per il metodo <code>curl</code>:</b> serve la libreria Python <code>curl_cffi</code>, che puoi installare con:</p>
 <pre><code>pip install curl_cffi --upgrade</code></pre>
-<p>Funziona su Linux, macOS e Windows senza configurazioni aggiuntive [citation:1][citation:5]. Se usi solo <code>METODO = browser</code>, non è necessaria.</p>
+<p>Funziona su Linux, macOS e Windows senza configurazioni aggiuntive. Se usi solo <code>METODO = browser</code>, non è necessaria.</p>
 
 <hr>
 
