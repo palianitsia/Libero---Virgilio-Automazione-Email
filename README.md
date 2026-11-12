@@ -169,7 +169,7 @@ $env:CLOAKBROWSER_LICENSE_KEY="cb_xxxxxxxx"    # Windows PowerShell</code></pre>
 <table>
   <thead><tr><th>File</th><th>Descrizione</th></tr></thead>
   <tbody>
-    <tr><td><code>Libero-Virglio Creazione Automatizzata v1.1.1 recap brows.py</code></td><td>Script principale v1.1 (browser + curl)</td></tr>
+    <tr><td><code>Libero-Virglio Creazione Automatizzata v1.1._rev2</code></td><td>Script principale v1.1 (browser + curl)</td></tr>
     <tr><td><code>Libero-Virglio Creazione Automatizzata v1.0.py</code></td><td>Script legacy v1.0 (solo browser)</td></tr>
     <tr><td><code>Login con cookie json per accesso istantaneo.py</code></td><td>Login rapido con i cookie salvati</td></tr>
     <tr><td><code>config.txt</code></td><td>Configurazione (creato/aggiornato al primo avvio)</td></tr>
