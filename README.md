@@ -41,7 +41,7 @@
   <li>Python 3.9+</li>
   <li>Account OnlineSim con credito (per SMS)</li>
   <li>(Opzionale) Account Webshare per proxy</li>
-  <li>(Solo <code>METODO = curl</code>) Account 2Captcha con credito</li>
+  <li>(Opzionale) Account 2Captcha con credito — <b>obbligatorio</b> in <code>curl</code>, <b>opzionale</b> in <code>browser</code></li>
 </ul>
 
 <hr>
