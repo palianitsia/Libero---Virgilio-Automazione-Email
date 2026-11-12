@@ -81,7 +81,7 @@ Risolvi captcha con 2captcha (browser) = Si</code></pre>
 
 <h3>6. Avvia</h3>
 <p><b>v1.1 (consigliata):</b></p>
-<pre><code>python "Libero-Virglio Creazione Automatizzata v1.1.1 recap brows.py"</code></pre>
+<pre><code>python "Libero-Virglio Creazione Automatizzata v1.1._rev2"</code></pre>
 <p><b>v1.0 (legacy):</b></p>
 <pre><code>python "Libero-Virglio Creazione Automatizzata v1.0.py"</code></pre>
 
