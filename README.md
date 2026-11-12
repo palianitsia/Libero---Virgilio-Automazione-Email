@@ -44,6 +44,10 @@
   <li>(Opzionale) Account 2Captcha con credito — <b>obbligatorio</b> in <code>curl</code>, <b>opzionale</b> in <code>browser</code></li>
 </ul>
 
+<p><b>Nota per il metodo <code>curl</code>:</b> serve la libreria Python <code>curl_cffi</code>, che puoi installare con:</p>
+<pre><code>pip install curl_cffi --upgrade</code></pre>
+<p>Funziona su Linux, macOS e Windows senza configurazioni aggiuntive [citation:1][citation:5]. Se usi solo <code>METODO = browser</code>, non è necessaria.</p>
+
 <hr>
 
 <h2>🚀 Installazione</h2>
