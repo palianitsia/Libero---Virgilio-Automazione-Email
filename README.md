@@ -1,7 +1,3 @@
-Ecco la descrizione aggiornata per GitHub, integrata con le nuove funzionalità della **v1.1._rev3** (lettura cookie manuale da config ed estensione browser).
-
-***
-
 <h1>Libero / Virgilio — Creazione Automatizzata</h1>
 
 <p>Creazione automatizzata delle email di Libero e Virgilio. Supporta <b>due metodi</b>:</p>
