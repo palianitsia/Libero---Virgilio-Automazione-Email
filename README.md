@@ -1,3 +1,7 @@
+Ecco la descrizione aggiornata per GitHub, integrata con le nuove funzionalità della **v1.1._rev3** (lettura cookie manuale da config ed estensione browser).
+
+***
+
 <h1>Libero / Virgilio — Creazione Automatizzata</h1>
 
 <p>Creazione automatizzata delle email di Libero e Virgilio. Supporta <b>due metodi</b>:</p>
@@ -15,21 +19,29 @@
 
 <hr>
 
-<h2>🆕 Novità v1.1</h2>
+<h2>🆕 Novità v1.1 (Rev 3)</h2>
 
 <table>
   <thead>
-    <tr><th>Funzione</th><th>v1.0</th><th>v1.1</th></tr>
+    <tr><th>Funzione</th><th>v1.0</th><th>v1.1 (Base)</th><th>v1.1 (Rev 3)</th></tr>
   </thead>
   <tbody>
-    <tr><td>Metodo registrazione</td><td>solo browser</td><td><b>browser</b> oppure <b>curl</b></td></tr>
-    <tr><td>Captcha v2 in browser</td><td>manuale</td><td><b>opzionale 2Captcha</b> (config)</td></tr>
-    <tr><td>Captcha v2/v3 in curl</td><td>non previsto</td><td><b>2Captcha automatico</b></td></tr>
-    <tr><td>Check username prima registrazione</td><td>no</td><td><b>sì</b> (scarta/suggerito/errore)</td></tr>
-    <tr><td>Fallback numero (curl)</td><td>no</td><td><b>sì</b> (numero fisso o solo fallback)</td></tr>
-    <tr><td>Config auto-aggiornata</td><td>no</td><td><b>sì</b> (chiavi nuove aggiunte in automatico)</td></tr>
+    <tr><td>Metodo registrazione</td><td>solo browser</td><td><b>browser</b> oppure <b>curl</b></td><td>Invariato</td></tr>
+    <tr><td>Captcha v2 in browser</td><td>manuale</td><td><b>opzionale 2Captcha</b></td><td>Invariato</td></tr>
+    <tr><td>Captcha v2/v3 in curl</td><td>non previsto</td><td><b>2Captcha automatico</b></td><td>Invariato</td></tr>
+    <tr><td>Check username</td><td>no</td><td><b>sì</b> (scarta/suggerito/errore)</td><td>Invariato</td></tr>
+    <tr><td>Fallback numero (curl)</td><td>no</td><td><b>sì</b> (numero fisso o solo fallback)</td><td>Invariato</td></tr>
+    <tr><td>Gestione Cookie Iubenda</td><td>Automatica</td><td>Playwright Headless</td><td><b>Manuale da Config.txt</b> + Estensione Browser</td></tr>
   </tbody>
 </table>
+
+<h3>🍪 Gestione Manuale Cookie Iubenda (Rev 3)</h3>
+<p>Nella versione <code>Libero-Virglio Creazione Automatizzata v1.1._rev3.py</code>, il cookie di consenso <code>iolcmp-exp</code> non viene più estratto automaticamente dal browser headless. Viene invece letto <b>al volo</b> dal file <code>config.txt</code>.</p>
+<ul>
+  <li><b>Vantaggio:</b> Maggiore stabilità e velocità, evitando errori di parsing dei cookie dinamici.</li>
+  <li><b>Come fare:</b> Inserisci il tuo cookie valido nel campo <code>MANUAL_IOLCMP_VALUE</code> in <code>config.txt</code>.</li>
+  <li><b>Strumento incluso:</b> Nel repository è presente un'<b>estensione browser</b> dedicata per estrarre facilmente il valore del cookie <code>iolcmp-exp</code> dalla pagina di Libero/Virgilio e incollarlo nel config.</li>
+</ul>
 
 <p>Il file <code>Libero-Virglio Creazione Automatizzata v1.0.py</code> <b>resta nel repository</b> per chi vuole usare la versione precedente.</p>
 
@@ -73,8 +85,11 @@ PROVIDER = "libero"       # oppure virgilio
 
 # Solo se METODO = curl, oppure se vuoi il captcha automatico in browser
 2CAPTCHA_API_KEY = "la_tua_chiave_2captcha"
-Risolvi captcha con 2captcha (browser) = Si</code></pre>
-<p>Se usi <code>METODO = curl</code> e non hai 2Captcha, la registrazione si blocca al primo captcha: 2Captcha è obbligatorio in <code>curl</code>.</p>
+Risolvi captcha con 2captcha (browser) = Si
+
+# NOVITÀ Rev 3: Cookie Iubenda Manuale
+MANUAL_IOLCMP_VALUE = "incolla_qui_il_tuo_cookie_iolcmp-exp"
+</code></pre>
 
 <h3>5. Aggiungi account</h3>
 <p>Copia <code>dati_account.example.txt</code> in <code>dati_account.txt</code> e inserisci le righe nel formato:</p>
@@ -84,31 +99,24 @@ Risolvi captcha con 2captcha (browser) = Si</code></pre>
 <pre><code>mariorossi92-Password123!-Mario-Rossi-12/03/1992-M-R</code></pre>
 
 <h3>6. Avvia</h3>
-<p><b>v1.1 (consigliata):</b></p>
-<pre><code>python "Libero-Virglio Creazione Automatizzata v1.1._rev2"</code></pre>
-<p><b>v1.0 (legacy):</b></p>
+<p><b>v1.1 Rev 3 (Consigliata - Cookie Manuale):</b></p>
+<pre><code>python "Libero-Virglio Creazione Automatizzata v1.1._rev3.py"</code></pre>
+<p><b>v1.1 Rev 2 (Legacy - Cookie Auto):</b></p>
+<pre><code>python "Libero-Virglio Creazione Automatizzata v1.1._rev2.py"</code></pre>
+<p><b>v1.0 (Legacy Browser):</b></p>
 <pre><code>python "Libero-Virglio Creazione Automatizzata v1.0.py"</code></pre>
 
 <hr>
 
-<h2>🔄 Aggiornamento dalla v1.0 alla v1.1</h2>
-<p>La v1.1 è <b>retrocompatibile</b>: puoi tenerla nella stessa cartella della v1.0 senza toccare i file esistenti.</p>
+<h2>🔄 Aggiornamento alla v1.1 Rev 3</h2>
+<p>La v1.1 Rev 3 introduce la gestione manuale del cookie <code>iolcmp-exp</code> per massimizzare l'affidabilità.</p>
 <ol>
-  <li><b>Mantieni</b> <code>config.txt</code>, <code>dati_account.txt</code>, <code>account_creati.txt</code>, <code>com_prov.json</code> e la cartella <code>cookies/</code>. Non vengono sovrascritti.</li>
-  <li><b>Aggiungi</b> il nuovo script <code>Libero-Virglio Creazione Automatizzata v1.1.1 recap brows.py</code> nella stessa cartella.</li>
-  <li><b>Avvia</b> il nuovo script. Al primo avvio:
-    <ul>
-      <li>Se <code>config.txt</code> esiste già, <code>update_config_file()</code> aggiunge <b>in automatico</b> le nuove chiavi mancanti (<code>Risolvi captcha con 2captcha (browser)</code>, ecc.) <b>preservando i tuoi valori attuali</b> e i commenti di sezione.</li>
-      <li>Se <code>config.txt</code> non esiste, viene creato da zero con tutti i default.</li>
-    </ul>
-  </li>
-  <li><b>Controlla</b> <code>config.txt</code>: se vuoi il captcha automatico in browser, imposta:
-    <pre><code>Risolvi captcha con 2captcha (browser) = Si</code></pre>
-    Se lo lasci <code>No</code>, in browser il captcha va risolto manualmente come nella v1.0.
-  </li>
-  <li><b>Per passare a <code>curl</code></b>: imposta <code>METODO = curl</code> e assicurati che <code>2CAPTCHA_API_KEY</code> sia valorizzata. Il resto dei file resta identico.</li>
+  <li><b>Scarica</b> il nuovo script <code>Libero-Virglio Creazione Automatizzata v1.1._rev3.py</code> e l'<b>estensione browser</b> inclusa nel repo.</li>
+  <li><b>Installa l'estensione</b> nel tuo browser (Chrome/Firefox/Edge) e visita la pagina di registrazione di Libero o Virgilio.</li>
+  <li><b>Estrai il cookie</b> <code>iolcmp-exp</code> usando l'estensione.</li>
+  <li><b>Incolla il valore</b> nel tuo <code>config.txt</code> alla voce <code>MANUAL_IOLCMP_VALUE</code>.</li>
+  <li><b>Avvia</b> lo script Rev 3. Il cookie verrà letto ad ogni registrazione direttamente dal file, garantendo che sia sempre valido e aggiornato.</li>
 </ol>
-<p>Nessuna migrazione manuale dei file dati. La v1.0 continua a funzionare in parallelo se vuoi tenerla come fallback.</p>
 
 <hr>
 
@@ -136,7 +144,7 @@ export CLOAKBROWSER_LICENSE_KEY=cb_xxxxxxxx     # Linux/macOS
 $env:CLOAKBROWSER_LICENSE_KEY="cb_xxxxxxxx"    # Windows PowerShell</code></pre>
 <p>Questa modalità dà <b>1 sessione browser simultanea</b>.</p>
 <p><b>Opzione C — Pro (a pagamento)</b> Sessioni multiple. Chiave da <a href="https://cloakbrowser.dev">https://cloakbrowser.dev</a>.</p>
-<blockquote><p>Se usi solo <code>METODO = curl</code>, CloakBrowser non serve. Playwright serve comunque (per il cookie iubenda).</p></blockquote>
+<blockquote><p>Se usi solo <code>METODO = curl</code>, CloakBrowser non serve. Playwright serve comunque (per il cookie iubenda nelle versioni precedenti alla Rev 3).</p></blockquote>
 
 <hr>
 
@@ -153,11 +161,11 @@ $env:CLOAKBROWSER_LICENSE_KEY="cb_xxxxxxxx"    # Windows PowerShell</code></pre>
   <li>Sposta gli account creati in <code>account_creati.txt</code>.</li>
 </ol>
 
-<p><b>Metodo <code>curl</code></b> (v1.1):</p>
+<p><b>Metodo <code>curl</code></b> (v1.1 Rev 3):</p>
 <ol>
   <li>Legge <code>config.txt</code> e <code>dati_account.txt</code>.</li>
   <li>Apre una sessione <code>curl_cffi</code> con fingerprint Chrome.</li>
-  <li>Recupera il cookie <code>iolcmp-exp</code> (iubenda) via Playwright headless.</li>
+  <li><b>Legge il cookie <code>iolcmp-exp</code> manualmente da config.txt</b> (nessun browser headless necessario per l'estrazione).</li>
   <li>Pre-validazione reCAPTCHA v3 → se il server richiede il v2, lo risolve con 2Captcha.</li>
   <li>Check username opzionale (con <code>check_username.php</code>).</li>
   <li>Esegue <code>check1.php</code> → <code>check2.php</code> → <code>check3.php</code>.</li>
@@ -173,9 +181,11 @@ $env:CLOAKBROWSER_LICENSE_KEY="cb_xxxxxxxx"    # Windows PowerShell</code></pre>
 <table>
   <thead><tr><th>File</th><th>Descrizione</th></tr></thead>
   <tbody>
-    <tr><td><code>Libero-Virglio Creazione Automatizzata v1.1._rev2</code></td><td>Script principale v1.1 (browser + curl)</td></tr>
+    <tr><td><code>Libero-Virglio Creazione Automatizzata v1.1._rev3.py</code></td><td>Script principale v1.1 Rev 3 (Cookie Manuale)</td></tr>
+    <tr><td><code>Libero-Virglio Creazione Automatizzata v1.1._rev2.py</code></td><td>Script v1.1 Rev 2 (Cookie Auto via Playwright)</td></tr>
     <tr><td><code>Libero-Virglio Creazione Automatizzata v1.0.py</code></td><td>Script legacy v1.0 (solo browser)</td></tr>
     <tr><td><code>Login con cookie json per accesso istantaneo.py</code></td><td>Login rapido con i cookie salvati</td></tr>
+    <tr><td><code>Estensione Browser Cookie Extractor</code></td><td>Estensione per estrarre <code>iolcmp-exp</code> facilmente</td></tr>
     <tr><td><code>config.txt</code></td><td>Configurazione (creato/aggiornato al primo avvio)</td></tr>
     <tr><td><code>config.example.txt</code></td><td>Esempio di configurazione</td></tr>
     <tr><td><code>dati_account.txt</code></td><td>Account da creare (creato al primo avvio)</td></tr>
@@ -196,6 +206,8 @@ $env:CLOAKBROWSER_LICENSE_KEY="cb_xxxxxxxx"    # Windows PowerShell</code></pre>
 <p><b>Q: Ho il CAPTCHA in <code>browser</code>.</b> Con <code>Risolvi captcha con 2captcha (browser) = Si</code> e <code>2CAPTCHA_API_KEY</code> valida, lo script lo risolve da solo. Con <code>No</code>, devi risolverlo tu manualmente nella finestra del browser (come nella v1.0).</p>
 
 <p><b>Q: Ho il CAPTCHA in <code>curl</code>.</b> In <code>curl</code> 2Captcha è obbligatorio: lo script risolve v3 (pre-validazione) e v2 (se richiesto) automaticamente. Senza <code>2CAPTCHA_API_KEY</code> la registrazione si blocca.</p>
+
+<p><b>Q: Come ottengo il cookie <code>iolcmp-exp</code> per la Rev 3?</b> Usa l'<b>estensione browser</b> inclusa nel repository. Visita libero.it o virgilio.it, accetta i cookie se richiesto, e clicca sull'icona dell'estensione per copiare il valore. Incollalo in <code>config.txt</code>.</p>
 
 <p><b>Q: Posso usare la v1.0 e la v1.1 insieme?</b> Sì. Stessa cartella, stesso <code>config.txt</code> (la v1.1 aggiunge le chiavi nuove preservando le tue), stessi <code>dati_account.txt</code> e <code>account_creati.txt</code>. Avvia lo script che preferisci.</p>
 
