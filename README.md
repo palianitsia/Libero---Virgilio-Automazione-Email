@@ -43,10 +43,9 @@
 <h3>📧 Nuovo Provider: Tiscali (Bonus)</h3>
 <p>Nella cartella <code>v1.1_rev3_bonus</code> trovi lo script <code>Libero-Virglio Creazione Automatizzata v1.1._rev3_bonus.py</code> che aggiunge il supporto per <b>Tiscali</b>.</p>
 <ul>
-  <li><b>Metodo:</b> Attualmente supportato solo via <code>curl</code> per massima efficienza e stabilità.</li>
+  <li><b>Metodo:</b> Attualmente supportato solo via <code>curl</code> per massima efficienza. La gestione dei cookie iniziali avviene automaticamente tramite un browser headless all'avvio (nessun cookie manuale da inserire in config).</li>
   <li><b>Configurazione:</b> Imposta <code>PROVIDER = "tiscali"</code> in <code>config.txt</code>.</li>
-  <li><b>Cookie:</b> Utilizza lo stesso sistema manuale di Libero/Virgilio (cookie <code>_iub_cs-18797783</code> o gestione automatica via hook se configurato).</li>
-  <li><b>Dati:</b> Richiede il formato comune <code>Città (SIGLA)</code> nel file <code>dati_account.txt</code> (es. <code>Roma (RM)</code>).</li>
+  <li><b>Dati:</b> Utilizza esclusivamente la <b>Provincia</b> (sigla di 2 lettere). Nel file <code>dati_account.txt</code>, puoi usare <code>R</code> per sceglierne una casuale da <code>com_prov.json</code>, oppure specificare direttamente la sigla (es. <code>RM</code>, <code>MI</code>). Il nome della città non è richiesto.</li>
 </ul>
 
 <p>Il file <code>Libero-Virglio Creazione Automatizzata v1.0.py</code> <b>resta nel repository</b> per chi vuole usare la versione precedente.</p>
