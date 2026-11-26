@@ -1,6 +1,6 @@
-<h1>Libero / Virgilio — Creazione Automatizzata</h1>
+<h1>Libero / Virgilio / Tiscali — Creazione Automatizzata</h1>
 
-<p>Creazione automatizzata delle email di Libero e Virgilio. Supporta <b>due metodi</b>:</p>
+<p>Creazione automatizzata delle email di <b>Libero</b>, <b>Virgilio</b> e ora anche <b>Tiscali</b>. Supporta <b>due metodi</b>:</p>
 
 <ul>
   <li><b><code>browser</code></b> — navigazione tramite <b>CloakBrowser + Playwright</b> (metodo classico, v1.0)</li>
@@ -10,19 +10,20 @@
 <p>OTP via <b>OnlineSim</b>, proxy <b>Webshare</b> opzionale, risoluzione captcha tramite <b>2Captcha</b> (in <code>curl</code> sempre, in <code>browser</code> opzionale).</p>
 
 <blockquote>
-  <p>⚠️ <b>Leggi <code>DISCLAIMER.md</code> prima di usare.</b> L'uso è a tuo rischio: la creazione automatizzata di account viola quasi certamente i Termini di Servizio di Libero/Virgilio.</p>
+  <p>⚠️ <b>Leggi <code>DISCLAIMER.md</code> prima di usare.</b> L'uso è a tuo rischio: la creazione automatizzata di account viola quasi certamente i Termini di Servizio dei provider.</p>
 </blockquote>
 
 <hr>
 
-<h2>🆕 Novità v1.1 (Rev 3)</h2>
+<h2>🆕 Novità v1.1 (Rev 3 Bonus)</h2>
 
 <table>
   <thead>
-    <tr><th>Funzione</th><th>v1.0</th><th>v1.1 (Base)</th><th>v1.1 (Rev 3)</th></tr>
+    <tr><th>Funzione</th><th>v1.0</th><th>v1.1 (Base)</th><th>v1.1 (Rev 3 Bonus)</th></tr>
   </thead>
   <tbody>
-    <tr><td>Metodo registrazione</td><td>solo browser</td><td><b>browser</b> oppure <b>curl</b></td><td>Invariato</td></tr>
+    <tr><td>Provider supportati</td><td>Libero, Virgilio</td><td>Libero, Virgilio</td><td><b>Libero, Virgilio, Tiscali</b></td></tr>
+    <tr><td>Metodo registrazione</td><td>solo browser</td><td><b>browser</b> oppure <b>curl</b></td><td>Invariato (Tiscali solo curl)</td></tr>
     <tr><td>Captcha v2 in browser</td><td>manuale</td><td><b>opzionale 2Captcha</b></td><td>Invariato</td></tr>
     <tr><td>Captcha v2/v3 in curl</td><td>non previsto</td><td><b>2Captcha automatico</b></td><td>Invariato</td></tr>
     <tr><td>Check username</td><td>no</td><td><b>sì</b> (scarta/suggerito/errore)</td><td>Invariato</td></tr>
@@ -37,6 +38,14 @@
   <li><b>Vantaggio:</b> Maggiore stabilità e velocità, evitando errori di parsing dei cookie dinamici.</li>
   <li><b>Come fare:</b> Inserisci il tuo cookie valido nel campo <code>MANUAL_IOLCMP_VALUE</code> in <code>config.txt</code>.</li>
   <li><b>Strumento incluso:</b> Nel repository è presente un'<b>estensione browser</b> dedicata per estrarre facilmente il valore del cookie <code>iolcmp-exp</code> dalla pagina di Libero/Virgilio e incollarlo nel config.</li>
+</ul>
+
+<h3>📧 Nuovo Provider: Tiscali (Bonus)</h3>
+<p>Nella cartella <code>v1.1_rev3_bonus</code> trovi lo script <code>Libero-Virglio Creazione Automatizzata v1.1._rev3_bonus.py</code> che aggiunge il supporto per <b>Tiscali</b>.</p>
+<ul>
+  <li><b>Metodo:</b> Attualmente supportato solo via <code>curl</code> per massima efficienza. La gestione dei cookie iniziali avviene automaticamente tramite un browser headless all'avvio (nessun cookie manuale da inserire in config).</li>
+  <li><b>Configurazione:</b> Imposta <code>PROVIDER = "tiscali"</code> in <code>config.txt</code>.</li>
+  <li><b>Dati:</b> Utilizza esclusivamente la <b>Provincia</b> (sigla di 2 lettere). Nel file <code>dati_account.txt</code>, puoi usare <code>R</code> per sceglierne una casuale da <code>com_prov.json</code>, oppure specificare direttamente la sigla (es. <code>RM</code>, <code>MI</code>). Il nome della città non è richiesto.</li>
 </ul>
 
 <p>Il file <code>Libero-Virglio Creazione Automatizzata v1.0.py</code> <b>resta nel repository</b> per chi vuole usare la versione precedente.</p>
@@ -77,7 +86,7 @@ cp config.example.txt config.txt      # Linux/macOS</code></pre>
 <p>Apri <code>config.txt</code> e compila almeno:</p>
 <pre><code>METODO = browser          # oppure curl
 ONLINESIM_API_KEY = "la_tua_chiave"
-PROVIDER = "libero"       # oppure virgilio
+PROVIDER = "libero"       # oppure virgilio, tiscali (solo in bonus)
 
 # Solo se METODO = curl, oppure se vuoi il captcha automatico in browser
 2CAPTCHA_API_KEY = "la_tua_chiave_2captcha"
@@ -90,28 +99,33 @@ MANUAL_IOLCMP_VALUE = "incolla_qui_il_tuo_cookie_iolcmp-exp"
 <h3>5. Aggiungi account</h3>
 <p>Copia <code>dati_account.example.txt</code> in <code>dati_account.txt</code> e inserisci le righe nel formato:</p>
 <pre><code>USERNAME-PASSWORD-NOME-COGNOME-DD/MM/AAAA-M|F-COMUNE</code></pre>
-<p>Usa <code>R</code> come comune per sceglierne uno casuale da <code>com_prov.json</code>.</p>
+<p>Usa <code>R</code> come comune per sceglierne uno casuale da <code>com_prov.json</code>. Per Tiscali, assicurati che il comune sia nel formato <code>Città (SIGLA)</code> (es. <code>Milano (MI)</code>).</p>
 <p>Esempio:</p>
 <pre><code>mariorossi92-Password123!-Mario-Rossi-12/03/1992-M-R</code></pre>
 
 <h3>6. Avvia</h3>
-<p><b>v1.1 Rev 3 (Consigliata - Cookie Manuale):</b></p>
+<p><b>v1.1 Rev 3 Bonus (Consigliata - Include Tiscali):</b></p>
+<pre><code>cd v1.1_rev3_bonus
+python "Libero-Virglio Creazione Automatizzata v1.1._rev3_bonus.py"</code></pre>
+
+<p><b>v1.1 Rev 3 Standard (Libero/Virgilio):</b></p>
 <pre><code>python "Libero-Virglio Creazione Automatizzata v1.1._rev3.py"</code></pre>
+
 <p><b>v1.1 Rev 2 (Legacy - Cookie Auto):</b></p>
 <pre><code>python "Libero-Virglio Creazione Automatizzata v1.1._rev2.py"</code></pre>
+
 <p><b>v1.0 (Legacy Browser):</b></p>
 <pre><code>python "Libero-Virglio Creazione Automatizzata v1.0.py"</code></pre>
 
 <hr>
 
-<h2>🔄 Aggiornamento alla v1.1 Rev 3</h2>
-<p>La v1.1 Rev 3 introduce la gestione manuale del cookie <code>iolcmp-exp</code> per massimizzare l'affidabilità.</p>
+<h2>🔄 Aggiornamento alla v1.1 Rev 3 Bonus</h2>
+<p>La v1.1 Rev 3 Bonus introduce il supporto per <b>Tiscali</b> e mantiene la gestione manuale del cookie per Libero/Virgilio.</p>
 <ol>
-  <li><b>Scarica</b> il nuovo script <code>Libero-Virglio Creazione Automatizzata v1.1._rev3.py</code> e l'<b>estensione browser</b> inclusa nel repo.</li>
-  <li><b>Installa l'estensione</b> nel tuo browser (Chrome/Firefox/Edge) e visita la pagina di registrazione di Libero o Virgilio.</li>
-  <li><b>Estrai il cookie</b> <code>iolcmp-exp</code> usando l'estensione.</li>
-  <li><b>Incolla il valore</b> nel tuo <code>config.txt</code> alla voce <code>MANUAL_IOLCMP_VALUE</code>.</li>
-  <li><b>Avvia</b> lo script Rev 3. Il cookie verrà letto ad ogni registrazione direttamente dal file, garantendo che sia sempre valido e aggiornato.</li>
+  <li><b>Spostati</b> nella cartella <code>v1.1_rev3_bonus</code>.</li>
+  <li><b>Configura</b> il tuo <code>config.txt</code> impostando <code>PROVIDER = "tiscali"</code> se desideri creare account Tiscali, oppure lascia <code>libero</code>/<code>virgilio</code>.</li>
+  <li><b>Cookie:</b> Assicurati che <code>MANUAL_IOLCMP_VALUE</code> sia compilato correttamente nel config.</li>
+  <li><b>Avvia</b> lo script bonus. Il bot gestirà automaticamente le differenze tecniche tra i provider.</li>
 </ol>
 
 <hr>
@@ -157,15 +171,15 @@ $env:CLOAKBROWSER_LICENSE_KEY="cb_xxxxxxxx"    # Windows PowerShell</code></pre>
   <li>Sposta gli account creati in <code>account_creati.txt</code>.</li>
 </ol>
 
-<p><b>Metodo <code>curl</code></b> (v1.1 Rev 3):</p>
+<p><b>Metodo <code>curl</code></b> (v1.1 Rev 3 Bonus):</p>
 <ol>
   <li>Legge <code>config.txt</code> e <code>dati_account.txt</code>.</li>
   <li>Apre una sessione <code>curl_cffi</code> con fingerprint Chrome.</li>
-  <li><b>Legge il cookie <code>iolcmp-exp</code> manualmente da config.txt</b> (nessun browser headless necessario per l'estrazione).</li>
+  <li><b>Legge il cookie manualmente da config.txt</b> (nessun browser headless necessario per l'estrazione).</li>
   <li>Pre-validazione reCAPTCHA v3 → se il server richiede il v2, lo risolve con 2Captcha.</li>
-  <li>Check username opzionale (con <code>check_username.php</code>).</li>
-  <li>Esegue <code>check1.php</code> → <code>check2.php</code> → <code>check3.php</code>.</li>
-  <li>Richiede il numero a OnlineSim (o fallback), invia <code>challenge1_check.php</code>, attende l'SMS, invia <code>challenge2_check.php</code>.</li>
+  <li>Check username opzionale (con <code>check_username.php</code> per Libero/Virgilio).</li>
+  <li>Esegue le chiamate API specifiche per il provider scelto (Libero/Virgilio/Tiscali).</li>
+  <li>Richiede il numero a OnlineSim (o fallback), invia le challenge, attende l'SMS, verifica il PIN.</li>
   <li>Salva i cookie in <code>cookies/USERNAME.json</code> (se attivo).</li>
   <li>Sposta gli account creati in <code>account_creati.txt</code>.</li>
 </ol>
@@ -175,9 +189,10 @@ $env:CLOAKBROWSER_LICENSE_KEY="cb_xxxxxxxx"    # Windows PowerShell</code></pre>
 <h2>🧩 File del progetto</h2>
 
 <table>
-  <thead><tr><th>File</th><th>Descrizione</th></tr></thead>
+  <thead><tr><th>File/Cartella</th><th>Descrizione</th></tr></thead>
   <tbody>
-    <tr><td><code>Libero-Virglio Creazione Automatizzata v1.1._rev3.py</code></td><td>Script principale v1.1 Rev 3 (Cookie Manuale)</td></tr>
+    <tr><td><code>v1.1_rev3_bonus/</code></td><td><b>Nuovo!</b> Cartella con script bonus che include supporto Tiscali</td></tr>
+    <tr><td><code>Libero-Virglio Creazione Automatizzata v1.1._rev3.py</code></td><td>Script principale v1.1 Rev 3 (Libero/Virgilio - Cookie Manuale)</td></tr>
     <tr><td><code>Libero-Virglio Creazione Automatizzata v1.1._rev2.py</code></td><td>Script v1.1 Rev 2 (Cookie Auto via Playwright)</td></tr>
     <tr><td><code>Libero-Virglio Creazione Automatizzata v1.0.py</code></td><td>Script legacy v1.0 (solo browser)</td></tr>
     <tr><td><code>Login con cookie json per accesso istantaneo.py</code></td><td>Login rapido con i cookie salvati</td></tr>
@@ -210,6 +225,8 @@ $env:CLOAKBROWSER_LICENSE_KEY="cb_xxxxxxxx"    # Windows PowerShell</code></pre>
 <p><b>Q: La v1.1 modifica i miei file?</b> Solo <code>config.txt</code>, e solo per aggiungere le chiavi nuove mancanti. I valori esistenti e le chiavi custom vengono preservati. <code>dati_account.txt</code> e <code>account_creati.txt</code> non vengono toccati se non per le righe degli account processati.</p>
 
 <p><b>Q: Quale metodo scelgo?</b> <code>browser</code> è più semplice (nessuna chiave 2Captcha obbligatoria, CloakBrowser gestisce il fingerprint). <code>curl</code> è più veloce e leggero ma richiede 2Captcha e può essere bloccato più facilmente se il fingerprint non basta.</p>
+
+<p><b>Q: Come registro su Tiscali?</b> Usa lo script nella cartella <code>v1.1_rev3_bonus</code>. Imposta <code>PROVIDER = "tiscali"</code> in <code>config.txt</code>. Assicurati che il comune nel file accounts sia nel formato <code>Città (SIGLA)</code>.</p>
 
 <hr>
 
