@@ -1,2 +1,0 @@
-# Account creati con successo
-# Formato: DATA | PROVIDER | USERNAME | PASSWORD | NOME COGNOME | DOB | GENDER | COMUNE
