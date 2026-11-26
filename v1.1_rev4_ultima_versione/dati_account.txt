@@ -1,0 +1,10 @@
+# Compila dati in formato
+# USERNAME-PASSWORD-FIRSTNAME-LASTNAME-DOB-GENDER-COMUNE
+# oppure USERNAME-PASSWORD-FIRSTNAME-LASTNAME-DOB-GENDER-R
+# (R = COMUNE casuale da com_prov.json)
+# Ogni riga rappresenta un account.
+# Le righe con successo vengono spostate in account_creati.txt.
+#
+# Esempi:
+# emaildicasper333-superpassword534-Mario-Biondo-01/01/1959-M-R
+# emaildicasper333-superpassword534-Mario-Biondo-01/01/1959-M-Alessandria del Carretto (CS)

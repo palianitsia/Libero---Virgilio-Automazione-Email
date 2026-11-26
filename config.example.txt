@@ -1,25 +1,102 @@
 # ============================================================
-# CONFIGURAZIONE — copia questo file in "config.txt"
+# CONFIGURAZIONE
 # ============================================================
+
+
+# GESTIONE COOKIE
+# ============================================================
+# Si -> flusso classico: inietta MANUAL_IOLCMP_VALUE (browser)
+#        oppure usa Playwright headless + MANUAL_IOLCMP_VALUE (curl)
+# No -> flusso no-cookie: NIENTE cookie manuale, NIENTE Playwright,
+#        nessun browser headless. Solo curl puro.
+USO_COOKIE_MANUALE = Si
+
+# ============================================================
+# COOKIE MANUALI (usato solo se USO_COOKIE_MANUALE = Si)
+# ============================================================
+# Il cookie iolcmp-exp deve essere inserito qui manualmente.
+# Senza questo valore (con USO_COOKIE_MANUALE = Si) la registrazione
+# non potrà procedere.
+# La lettura avviene al volo da config.txt ad ogni registrazione.
+MANUAL_IOLCMP_VALUE = ""
+
+# ============================================================
+# Metodo registrazione: "browser" (cloakbrowser) oppure "curl" (curl_cffi). Tiscali attualmente funziona solo con curl, il metodo con browser non e completato 
+METODO = browser
+
 ONLINESIM_API_KEY = "INCOLLA_QUI_LA_TUA_CHIAVE_API"
 ONLINESIM_SERVICE = "libero"
 ONLINESIM_COUNTRY_IT = "39"
 ONLINESIM_BASE_URL = "https://onlinesim.io/api"
 
-PROVIDER = "libero"          # "libero" oppure "virgilio"
+# Provider registrazione: "libero" oppure "virgilio" oppure "tiscali"
+PROVIDER = "libero"
+
+# Timeout attesa SMS (secondi)
 SMS_TIMEOUT = 60
+
+# Tentativi con numeri diversi se OTP non arriva
 MAX_ATTEMPTS = 3
+
+# Pausa tra un account e il successivo (secondi)
 PAUSA_TRA_ACCOUNT = 30
 
+# Browser (solo METODO = browser)
 HEADLESS = false
 HUMANIZE = true
 HUMAN_PRESET = "careful"
 ALLOW_3P_COOKIES = true
 TRANSPARENT_PROXY = false
 
+# Salvataggio cookie di accesso
 Salvare cookie di accesso = Si
 Cartella cookie = cookies
 
+# ============================================================
+# 2CAPTCHA (curl + opzionale browser)
+# ============================================================
+2CAPTCHA_API_KEY = "INCOLLA_QUI_LA_TUA_CHIAVE_2CAPTCHA"
+RECAPTCHA_SITEKEY_V3 = "6Ld6OtQZAAAAAEoUAMxGZfzboeicLPJ3GSrAJgsQ"
+RECAPTCHA_SITEKEY_V2 = "6LeGN_8SAAAAAMVXRVletwdjUedq_qtJfk8VFvaO"
+RECAPTCHA_MIN_SCORE = 0.3
+
+# Risolvi captcha con 2captcha anche in METODO = browser (Si / No)
+# Se No, in browser il captcha va risolto manualmente.
+Risolvi captcha con 2captcha (browser) = Si
+
+# ============================================================
+# CHECK USERNAME (evita di sprecare numeri se già esistente)
+# ============================================================
+# Comportamento se lo username è già in uso:
+#   scarta    -> salta l'account (nessun numero/token sprecato)
+#   suggerito -> usa il primo username suggerito dal server
+#   errore    -> blocca tutto e avvisa l'utente
+Comportamento username esistente = scarta
+
+# Abilita il check preventivo dello username prima della registrazione
+Check username prima registrazione = Si
+
+# ============================================================
+# FALLBACK NUMERO (solo METODO = curl)
+# ============================================================
+# Se attivo, quando OnlineSim non fornisce un numero (o tutti i
+# tentativi OTP falliscono) usa il numero di fallback sotto.
+Fallback numero curl = No
+Numero fallback curl = 3511490097
+# Se Si, salta OnlineSim e usa SEMPRE il numero di fallback.
+# Con numero di fallback non si attende l'OTP: se il sito lo richiede,
+# l'account viene scartato subito (nessun SMS leggibile).
+Usare solo fallback = No
+
+# ============================================================
+# PROXY WEBSHARE
+# ============================================================
+# Attiva l'uso del proxy (Si / No). Se No, i parametri sotto vengono ignorati.
 Uso_proxy = No
+
+# URL API Webshare per scaricare la lista proxy.
+# Formato atteso: una riga per proxy -> ip:porta:username:password
 WEBSHARE_API_URL = ""
+
+# Tempo di cache della lista proxy (secondi). Default 3600 = 1 ora.
 WEBSHARE_CACHE_TIME = 3600
